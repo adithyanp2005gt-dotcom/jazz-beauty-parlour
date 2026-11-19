@@ -1,0 +1,130 @@
+@import '@fontsource/cormorant-garamond/300.css';
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource/cormorant-garamond/300-italic.css';
+@import '@fontsource/cormorant-garamond/400-italic.css';
+@import '@fontsource/cormorant-garamond/500-italic.css';
+@import '@fontsource/dm-sans/300.css';
+@import '@fontsource/dm-sans/400.css';
+@import '@fontsource/dm-sans/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory text-espresso font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #C6A477;
+    color: #F8F3ED;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F8F3ED;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #A66D78;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #482638;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-[10px] sm:text-xs font-sans font-medium tracking-widest2 uppercase text-gold;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-espresso;
+  }
+
+  .section-title-light {
+    @apply font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-ivory;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-plum text-ivory text-[11px] sm:text-xs font-sans tracking-widest2 uppercase
+           transition-all duration-500 hover:bg-espresso hover:tracking-widest3 relative overflow-hidden;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 border border-ivory text-ivory text-[11px] sm:text-xs font-sans tracking-widest2 uppercase
+           transition-all duration-500 hover:bg-ivory hover:text-plum relative overflow-hidden;
+  }
+
+  .btn-outline-dark {
+    @apply inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 border border-plum text-plum text-[11px] sm:text-xs font-sans tracking-widest2 uppercase
+           transition-all duration-500 hover:bg-plum hover:text-ivory relative overflow-hidden;
+  }
+
+  .divider-gold {
+    @apply w-16 h-px bg-gold;
+  }
+
+  .image-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-espresso/60 via-transparent to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  .clip-diagonal-reverse {
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
+
+/* Grain texture overlay */
+.grain-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hero video/image parallax */
+.hero-parallax {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Shimmer effect for loading */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #F8F3ED 25%, #EEE5D8 50%, #F8F3ED 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
